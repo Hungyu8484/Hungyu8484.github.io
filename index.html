@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eve Wang (王宏聿) - Personal Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header Section with Gradient */
+        .header {
+            background: linear-gradient(135deg, #a8e6cf 0%, #ffffff 100%);
+            padding: 60px 0 40px;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .header-left {
+            padding-top: 2rem;
+        }
+
+        .name {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .contact-info {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .location {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            background: #2c3e50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-image::before {
+            content: '👤';
+            font-size: 4rem;
+            color: white;
+        }
+
+        .profile-text {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Main Content Grid */
+        .main-content {
+            background: white;
+            padding: 60px 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .certificate-button {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .certificate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .certificate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            text-decoration: none;
+            color: white;
+        }
+
+        .content-item {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            aspect-ratio: 4/3;
+        }
+
+        .content-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .content-item .image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .content-item .gradient-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.05) 100%);
+        }
+
+        .content-title {
+            position: absolute;
+            left: 1rem;
+            right: 1rem;
+            bottom: 1rem;
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+
+        .content-item .description {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: end;
+            padding: 1rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.875rem;
+            line-height: 1.4;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(1px);
+            z-index: 2;
+        }
+
+        .content-item:hover .description {
+            opacity: 1;
+        }
+
+        @media (max-width: 640px) {
+            .content-item .description {
+                opacity: 1;
+            }
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .name {
+                font-size: 2.5rem;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .content-box {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1 class="name">Eve Wang<br>(王宏聿)</h1> <!-- Homepage Title 1 -->
+                    <div class="contact-info">
+                        <strong>Hsinchu, Taiwan; Gmail: hungyu.8484@gmail.com</strong>
+                    </div> <!-- Homepage Description 1 -->
+                    <div class="location">
+                        location: Hsinchu, Taiwan
+                    </div> <!-- Homepage Location 1 -->
+                </div>
+                <div class="profile-section">
+                    <div class="profile-image"></div> <!-- Homepage Photo 1 -->
+                    <div class="profile-text">(My picture)</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Item 1: AES Research Paper -->
+                <a href="aes-research.html" class="content-item item-1">
+                    <div class="image-container" style="background-image: url('./public/images/AESindex.png');">
+                        <div class="gradient-overlay"></div>
+                        <div class="content-title">AES Research Paper</div>
+                        <div class="description">[description]</div>
+                    </div>
+                </a>
+
+                <!-- Item 2: Linguistic Research -->
+                <a href="linguistic-research.html" class="content-item item-2">
+                    <div class="image-container" style="background-image: url('./Language_page.png');">
+                        <div class="gradient-overlay"></div>
+                        <div class="content-title">Linguistic Research</div>
+                        <div class="description">[description]</div>
+                    </div>
+                </a>
+
+                <!-- Item 3: TEDx Speech -->
+                <a href="tedx-speech.html" class="content-item item-3">
+                    <div class="image-container" style="background-image: url('./public/images/TEDxindex.png');">
+                        <div class="gradient-overlay"></div>
+                        <div class="content-title">TEDx Speech</div>
+                        <div class="description">[description]</div>
+                    </div>
+                </a>
+
+                <!-- Item 4: Physics Club -->
+                <a href="physics-club.html" class="content-item item-4">
+                    <div class="image-container" style="background-image: url('./public/images/Clubindex.jpg');">
+                        <div class="gradient-overlay"></div>
+                        <div class="content-title">Physics Club</div>
+                        <div class="description">[description]</div>
+                    </div>
+                </a>
+
+                <!-- Item 5: Congruence -->
+                <a href="congruence.html" class="content-item item-5">
+                    <div class="image-container" style="background-image: url('./public/images/congruenceindex.png');">
+                        <div class="gradient-overlay"></div>
+                        <div class="content-title">Congruence</div>
+                        <div class="description">[description]</div>
+                    </div>
+                </a>
+
+                <!-- Item 6: Physics and Math School -->
+                <a href="physics-math-school.html" class="content-item item-6">
+                    <div class="image-container" style="background-image: url('./public/images/MathandPhysicsindex.png');">
+                        <div class="gradient-overlay"></div>
+                        <div class="content-title">Physics & Math School</div>
+                        <div class="description">[description]</div>
+                    </div>
+                </a>
+
+                <!-- Certificate Button -->
+                <div class="certificate-button">
+                    <a href="certificate.html" class="certificate-btn">
+                        🏆 See My Certificates
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Add hover effects and interactions
+        document.querySelectorAll('.content-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.15)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for better accessibility and smooth animations */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+  }
+}
+
+@layer components {
+  /* Focus visible styles for better accessibility */
+  .focus-visible {
+    @apply focus:outline-none focus:ring-4 focus:ring-blue-500/50;
+  }
+  
+  /* Smooth transitions for all interactive elements */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+}
+
+@layer utilities {
+  /* Custom gradient for header */
+  .header-gradient {
+    background: linear-gradient(135deg, #a8e6cf 0%, #ffffff 100%);
+  }
+}
+
+
