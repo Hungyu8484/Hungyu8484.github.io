@@ -48,7 +48,7 @@
                         <p class="text-gray-500 text-center">PDF will open in modal when clicked</p>
                     </div>
                     <button 
-                        onclick="openPdfModal('AESresearch.pdf')"
+                        onclick="openPdfModal('/AESresearch.pdf')"
                         class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
                         aria-label="View Research Report in full screen">
                         View Report
@@ -61,7 +61,7 @@
                     <p class="text-gray-600 mb-4">Science fair presentation paper</p>
                     <div id="science-fair-pdf"></div>
                     <button 
-                        onclick="openPdfModal('AESresearch.pdf')"
+                        onclick="openPdfModal('/AESresearch.pdf')"
                         class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
                         aria-label="View Science Fair Paper in full screen">
                         View Paper
@@ -74,7 +74,7 @@
                     <p class="text-gray-600 mb-4">Presentation slides for science fair</p>
                     <div id="science-fair-slides-pdf"></div>
                     <button 
-                        onclick="openPdfModal('AESFile2.pdf')"
+                        onclick="openPdfModal('/AESFile2.pdf')"
                         class="w-full mt-4 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
                         aria-label="View Science Fair Slides in full screen">
                         View Slides
@@ -232,7 +232,7 @@
             
             // Initialize Science Fair Paper PDF
             const scienceFairPdf = new EmbeddedPDF({
-                src: 'AESresearch.pdf',
+                src: '/AESresearch.pdf',
                 title: 'Science Fair Paper PDF',
                 height: '480px'
             });
@@ -240,7 +240,7 @@
             
             // Initialize Science Fair Slides PDF
             const scienceFairSlidesPdf = new EmbeddedPDF({
-                src: 'AESFile2.pdf',
+                src: '/AESFile2.pdf',
                 title: 'Science Fair Slides PDF',
                 height: '480px'
             });
