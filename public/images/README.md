@@ -21,3 +21,4 @@ Place your portfolio cover images in this directory:
 These images are used as background covers for the PortfolioCard components on the homepage grid.
 
 
+
