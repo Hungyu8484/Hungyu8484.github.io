@@ -357,6 +357,10 @@
             .page-title {
                 font-size: 2rem;
             }
+            /* Make embedded PDFs fill viewport on mobile */
+            iframe[src$='.pdf'] {
+                height: 85vh !important;
+            }
         }
     </style>
 </head>

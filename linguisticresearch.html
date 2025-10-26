@@ -378,6 +378,12 @@
             .photo-grid {
                 grid-template-columns: 1fr;
             }
+
+            /* Make PDFs scrollable full-height on mobile */
+            .content-box.pdf, .content-box.pdf .pdf-container, .content-box.pdf iframe {
+                width: 100% !important;
+                height: 85vh !important;
+            }
         }
     </style>
 </head>
