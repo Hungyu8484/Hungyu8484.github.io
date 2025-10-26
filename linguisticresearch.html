@@ -207,13 +207,15 @@
             border-radius: 4px;
             font-size: 0.9rem;
             font-weight: 600;
-            opacity: 0;
+            opacity: 0; /* hidden by default so it doesn't block scrolling */
+            pointer-events: none;
             transition: opacity 0.3s ease;
             cursor: pointer;
         }
 
         .content-box:hover .pdf-overlay {
             opacity: 1;
+            pointer-events: auto;
         }
 
         .scroll-hint {
@@ -445,7 +447,7 @@
                                 <img src="linguisitc/LinguistIcPhoto/linguisticpic1.png" alt="Linguistic conference photo 1" loading="lazy" decoding="async" width="500" height="240">
                             </div>
                             <div class="photo-item">
-                                <img src="linguisitc/LinguistIcPhoto/linguisticpic2.png" alt="Linguistic conference photo 2" loading="lazy" decoding="async" width="500" height="240">
+                                <img src="linguisitc/LinguistIcPhoto/Untitled design.png" alt="Linguistic conference photo 2" loading="lazy" decoding="async" width="500" height="240">
                             </div>
                             <div class="photo-item">
                                 <img src="linguisitc/LinguistIcPhoto/IMG_1124.JPG" alt="Linguistic conference photo 3" loading="lazy" decoding="async" width="500" height="240">
