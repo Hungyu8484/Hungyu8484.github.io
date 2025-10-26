@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congruence - Eve Wang</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .header {
+            background-image: url('./public/images/congruenceindex.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 40px 0 20px;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.75) 0%, rgba(40, 20, 60, 0.8) 100%);
+        }
+        
+        .header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-button:hover {
+            color: #e0e0e0;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .further-plan {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .main-content {
+            background: white;
+            padding: 40px 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .content-item {
+            background: white;
+            border: none;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .content-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-dates {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+
+        .content-box {
+            width: 100%;
+            height: 500px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .content-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .content-box iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .content-box.pdf {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+        }
+
+        .pdf-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .content-box:hover .pdf-overlay {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        /* PDF Modal Styles */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .pdf-modal-content {
+            position: relative;
+            margin: 2% auto;
+            width: 90%;
+            height: 90%;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .pdf-modal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .pdf-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .pdf-modal-close:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Photo Modal Styles */
+        .photo-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .photo-modal-content {
+            position: relative;
+            margin: 5% auto;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-modal-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .photo-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .photo-modal-close:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Photo Gallery Styles */
+        .photo-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .content-box.pdf {
+            background: #2c3e50;
+        }
+
+        .content-box.pics {
+            background: #34495e;
+            height: 100px;
+        }
+
+        .content-box.empty {
+            background: #ecf0f1;
+            color: #7f8c8d;
+            border: 2px dashed #bdc3c7;
+        }
+
+        .content-box.list {
+            background: #f8f9fa;
+            color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1rem;
+        }
+
+        .list-item {
+            margin: 0.2rem 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="back-button">← Back to Portfolio</a>
+            <h1 class="page-title">Congruence Theory</h1> <!-- 5 Congruence Title 1 -->
+            <div class="further-plan">G10 Logic Dialectics course</div> <!-- 5 Congruence Subtitle 1 -->
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div style="max-width: 1000px; margin: 0 auto 3rem auto; padding: 0 2rem;">
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #555; text-align: justify; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                    For our Logic and Dialectics course, each student led a full-period lesson on a mathematical topic. I chose Congruence Theory, a core concept in number theory, and designed the session to clarify how modular arithmetic operates beyond rote computation. I guided my classmates through proofs, examples, and discussions, aiming to make abstract logic both rigorous and intuitive.
+                </p>
+            </div>
+            
+            <!-- Presentation Photos -->
+            <div style="max-width: 1400px; margin: 0 auto 3rem auto; padding: 0 1.5rem;">
+                <div style="display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem;">
+                    <div style="flex: 0 0 auto; width: 300px; position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <img src="congu/pics/congruencepic1.png" alt="Congruence Presentation 1" style="width: 100%; height: 200px; object-fit: cover; display: block;" loading="lazy" decoding="async">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); color: white; padding: 10px; text-align: center; font-size: 0.9rem; opacity: 0; transition: opacity 0.3s ease;" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0'">Teaching in class</div>
+                    </div>
+                    <div style="flex: 0 0 auto; width: 300px; position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <img src="congu/pics/congruncepic2.png" alt="Congruence Presentation 2" style="width: 100%; height: 200px; object-fit: cover; display: block;" loading="lazy" decoding="async">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); color: white; padding: 10px; text-align: center; font-size: 0.9rem; opacity: 0; transition: opacity 0.3s ease;" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0'">Using whiteboard to assist thinking and understanding</div>
+                    </div>
+                    <div style="flex: 0 0 auto; width: 300px; position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <img src="congu/pics/congruencepic3.png" alt="Congruence Presentation 3" style="width: 100%; height: 200px; object-fit: cover; display: block;" loading="lazy" decoding="async">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); color: white; padding: 10px; text-align: center; font-size: 0.9rem; opacity: 0; transition: opacity 0.3s ease;" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0'">Teaching in class</div>
+                    </div>
+                    <div style="flex: 0 0 auto; width: 300px; position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                        <img src="congu/pics/congruencepic4.png" alt="Congruence Presentation 4" style="width: 100%; height: 200px; object-fit: cover; display: block;" loading="lazy" decoding="async">
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); color: white; padding: 10px; text-align: center; font-size: 0.9rem; opacity: 0; transition: opacity 0.3s ease;" onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='0'">Using whiteboard to assist thinking and understanding</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="content-item">
+                    <div class="content-title">Presentation</div> <!-- 5 Congruence File 1 Title -->
+                    <iframe src="congu/congruencefile1.pdf#toolbar=0&navpanes=0&scrollbar=1" style="width: 100%; height: 600px; border: none; border-radius: 10px;"></iframe> <!-- 5 Congruence File 1 PDF -->
+                </div>
+                <div class="content-item">
+                    <div class="content-title">Classmates feedback and rating</div> <!-- 5 Congruence List 1 Title -->
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <img src="congu/feedback1.png" alt="Feedback 1" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" loading="lazy" decoding="async">
+                        <img src="congu/feedback2.png" alt="Feedback 2" style="width: 100%; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);" loading="lazy" decoding="async">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Preparation Process and Personal Reflection -->
+            <div style="max-width: 1200px; margin: 3rem auto 0 auto; padding: 0 2rem;">
+                <div style="margin-bottom: 2.5rem;">
+                    <h3 style="font-size: 1.3rem; font-weight: 600; color: #333; margin-bottom: 1rem;">Preparation Process</h3>
+                    <div style="padding: 1.5rem; border-left: 3px solid #ccc;">
+                        <p style="font-family: 'Times New Roman', Times, serif; font-size: 1rem; line-height: 1.8; color: #555; text-align: justify; margin-bottom: 1rem;">
+                            At first, I struggled to understand why modular inverses exist and what makes them valid. To solve this, I went back to the basics (exploring sets, equivalence relations, and modular groups) and even used a small whiteboard to visualize how congruence behaves under modular operations.
+                        </p>
+                        <p style="font-family: 'Times New Roman', Times, serif; font-size: 1rem; line-height: 1.8; color: #555; text-align: justify; margin-bottom: 1rem;">
+                            Writing and drawing the relationships by hand helped me "see" the logic: a modular inverse exists only when a number and the modulus are coprime, allowing division within the modular system. This hands-on process turned something abstract into something intuitive and concrete.
+                        </p>
+                        <p style="font-family: 'Times New Roman', Times, serif; font-size: 1rem; line-height: 1.8; color: #555; text-align: justify; margin: 0;">
+                            When preparing my slides, I used a dark background with contrasting text to reduce eye strain and keep the class focused. I even opened with a lighthearted joke about a fish called "銅魚 (Bronze Fish)", which a playful pun on the Chinese word for "congruence." This helped lighten the atmosphere before diving into the theory.
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 3rem;">
+                    <h3 style="font-size: 1.3rem; font-weight: 600; color: #333; margin-bottom: 1rem;">Personal Reflection</h3>
+                    <div style="padding: 1.5rem; border-left: 3px solid #ccc;">
+                        <p style="font-family: 'Times New Roman', Times, serif; font-size: 1rem; line-height: 1.8; color: #555; text-align: justify; margin: 0;">
+                            This experience taught me that understanding something is very different from explaining it. Translating abstract math into a story others can follow was both challenging and rewarding. I learned to think from the audience's perspective and to decide what details were essential and how to visualize invisible concepts. It also pushed me beyond my comfort zone in public speaking, combining my artistic sense with logical presentation. Most importantly, I discovered that sharing knowledge can be deeply enjoyable. This project gave me a glimpse of how I might connect my love for reasoning, communication, and design in future academic pursuits.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PDF Modal -->
+    <div id="pdfModal" class="pdf-modal">
+        <div class="pdf-modal-content">
+            <span class="pdf-modal-close" onclick="closePdfModal()">&times;</span>
+            <iframe id="pdfFrame" src="" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+
+    <!-- Photo Modal -->
+    <div id="photoModal" class="photo-modal">
+        <div class="photo-modal-content">
+            <span class="photo-modal-close" onclick="closePhotoModal()">&times;</span>
+            <img id="photoModalImg" src="" alt="">
+        </div>
+    </div>
+
+    <script>
+        function openPdfModal(pdfSrc) {
+            document.getElementById('pdfFrame').src = pdfSrc;
+            document.getElementById('pdfModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePdfModal() {
+            document.getElementById('pdfModal').style.display = 'none';
+            document.getElementById('pdfFrame').src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        function openPhotoModal(photoSrc) {
+            document.getElementById('photoModalImg').src = photoSrc;
+            document.getElementById('photoModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePhotoModal() {
+            document.getElementById('photoModal').style.display = 'none';
+            document.getElementById('photoModalImg').src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            const pdfModal = document.getElementById('pdfModal');
+            const photoModal = document.getElementById('photoModal');
+            if (event.target === pdfModal) {
+                closePdfModal();
+            }
+            if (event.target === photoModal) {
+                closePhotoModal();
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closePdfModal();
+            }
+        });
+    </script>
+</body>
+</html>

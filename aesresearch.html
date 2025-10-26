@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auger Electron Spectrometer Research - Eve Wang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom gradient for header */
+        .header-gradient {
+            background-image: url('./public/images/AESindex.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .header-gradient::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.75) 0%, rgba(40, 20, 60, 0.8) 100%);
+        }
+        
+        .header-gradient > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Smooth transitions */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+        }
+        
+        /* Photo overlay effect */
+        .photo-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        
+        .photo-item:hover .photo-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    
+    <!-- Header Section -->
+    <header class="header-gradient py-12 px-8">
+        <div class="container mx-auto max-w-6xl">
+            <a href="index.html" class="inline-flex items-center gap-2 text-white hover:text-gray-200 font-semibold mb-6 transition-colors">
+                ← Back to Portfolio
+            </a>
+            <h1 class="text-4xl md:text-5xl font-bold text-white text-center mb-4">Auger Electron Spectrometer Research</h1>
+            <p class="text-xl text-white text-center" style="font-family: 'Times New Roman', Times, serif; font-weight: 400;">NSRRC Research Group | Exploring Material Analysis through Auger Electron Spectroscopy (AES)</p>
+        </div>
+    </header>
+
+    <!-- Section I — Research Overview -->
+    <section class="py-12 px-8 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    This project was conducted at the National Synchrotron Radiation Research Center (NSRRC), Taiwan's leading facility for advanced science research utilizing synchrotron radiation. I was selected as a high school research intern after an application process, joining a team of four classmates under the supervision of NSRRC scientists.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed mt-4">
+                    Since my sophomore year of high school, I have spent every Tuesday afternoon at the center, conducting experiments and data analysis focused on improving Auger Electron Diffraction (AED) methods for material characterization. Throughout this ongoing project, I have presented our research project in multiple academic and outreach settings: including the school science fair and exchange programs in Japan. The research remains in progress, and I plan to continue contributing to the project in the coming year.
+                </p>
+            </div>
+            
+            <!-- NSRRC Internship Photos -->
+            <div class="mt-10">
+                <h3 class="text-2xl font-bold text-gray-800 text-center mb-6">Internship at NSRRC</h3>
+                <div class="flex gap-4 justify-center flex-wrap">
+                    <div class="photo-item relative rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform w-64 h-48" onclick="openPhotoModal('AESSUBPAGE/AESPhoto/Intern/intern1.jpg')">
+                        <img src="AESSUBPAGE/AESPhoto/Intern/intern1.jpg" alt="NSRRC Lab Work" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                        <div class="photo-overlay">Presentation at NSRRC Research Hall</div>
+                    </div>
+                    <div class="photo-item relative rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform w-64 h-48" onclick="openPhotoModal('AESSUBPAGE/AESPhoto/Intern/intern2.jpg')">
+                        <img src="AESSUBPAGE/AESPhoto/Intern/intern2.jpg" alt="Equipment Setup" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                        <div class="photo-overlay">Understanding NSRRC instrumentation principles</div>
+                    </div>
+                    <div class="photo-item relative rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform w-64 h-48" onclick="openPhotoModal('AESSUBPAGE/AESPhoto/Intern/intern3.jpg')">
+                        <img src="AESSUBPAGE/AESPhoto/Intern/intern3.jpg" alt="Research Discussion" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                        <div class="photo-overlay">Understanding NSRRC instrumentation principles</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <style>
+        .photo-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+            font-size: 0.875rem;
+            font-weight: 600;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        
+        .photo-item:hover .photo-overlay {
+            opacity: 1;
+        }
+    </style>
+
+    <!-- Section II — Paper & Outreach Presentation -->
+    <section class="py-12 px-8 bg-gray-50">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl font-bold text-gray-800 text-center mb-10">Paper & Outreach Presentation</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Science Fair Photos -->
+                <div class="bg-white rounded-2xl shadow-md p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Gifted Class Science Exhibition</h3>
+                    <p class="text-sm text-gray-500 mb-4">2025 May</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="photo-item relative rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform aspect-video" onclick="openPhotoModal('AESSUBPAGE/AESPhoto/ScienceFair/aespic1.jpg')">
+                            <img src="AESSUBPAGE/AESPhoto/ScienceFair/aespic1.jpg" alt="Science Fair Booth" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                            <div class="photo-overlay">Presenting at Science Exhibition</div>
+                        </div>
+                        <div class="photo-item relative rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform aspect-video" onclick="openPhotoModal('AESSUBPAGE/AESPhoto/ScienceFair/aespic2.jpg')">
+                            <img src="AESSUBPAGE/AESPhoto/ScienceFair/aespic2.jpg" alt="Award Ceremony" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                            <div class="photo-overlay">Presenting at Science Exhibition</div>
+                        </div>
+                        <div class="photo-item relative rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform aspect-video col-span-2" onclick="openPhotoModal('AESSUBPAGE/AESPhoto/ScienceFair/aespic6.jpg')">
+                            <img src="AESSUBPAGE/AESPhoto/ScienceFair/aespic6.jpg" alt="Research Display" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                            <div class="photo-overlay">Group photo with my science and math gifted class</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research Paper Card -->
+                <div class="bg-white rounded-2xl shadow-md p-8 hover:shadow-lg transition-shadow card-hover">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">In-School Science Fair Honorable Mention</h3>
+                    <p class="text-sm font-semibold mb-4" style="color: #D4AF37;">🏆 Honorable Mention Award</p>
+                    <p class="text-lg text-gray-700 mb-6 italic leading-relaxed">
+                        "Investigation of Material Analysis Techniques Using Auger Electron Diffraction (AED)"
+                    </p>
+                    <button 
+                        onclick="openPdfModal('AESSUBPAGE/AESresearch.pdf')"
+                        class="w-full bg-red-900 hover:bg-red-950 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                        View PDF
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Presentation Photos and Slides -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Japan Exchange Presentation -->
+                <div class="bg-white rounded-2xl shadow-md p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Japan Waseda University and Mito High School</h3>
+                    <p class="text-sm text-gray-500 mb-4">2025 February</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="photo-item relative rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform aspect-video" onclick="openPhotoModal('AESSUBPAGE/AESPhoto/Japan/aespic.jpg')">
+                            <img src="AESSUBPAGE/AESPhoto/Japan/aespic.jpg" alt="Japan presentation 1" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                            <div class="photo-overlay">Group photo with Waseda University professor</div>
+                        </div>
+                        <div class="photo-item relative rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform aspect-video" onclick="openPhotoModal('AESSUBPAGE/AESPhoto/Japan/aespic3.jpg')">
+                            <img src="AESSUBPAGE/AESPhoto/Japan/aespic3.jpg" alt="Japan presentation 2" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                            <div class="photo-overlay">Q&A with Japanese students</div>
+                        </div>
+                        <div class="photo-item relative rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform aspect-video" onclick="openPhotoModal('AESSUBPAGE/AESPhoto/Japan/aespic5.jpeg')">
+                            <img src="AESSUBPAGE/AESPhoto/Japan/aespic5.jpeg" alt="Japan presentation 3" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                            <div class="photo-overlay">Presenting at Waseda University</div>
+                        </div>
+                        <div class="photo-item relative rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform aspect-video" onclick="openPhotoModal('AESSUBPAGE/AESPhoto/Japan/aespic7.jpg')">
+                            <img src="AESSUBPAGE/AESPhoto/Japan/aespic7.jpg" alt="Japan presentation 4" class="w-full h-full object-cover" loading="lazy" decoding="async">
+                            <div class="photo-overlay">Presenting at Waseda University</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Presentation Slides -->
+                <div class="bg-white rounded-2xl shadow-md p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Presentation Slides</h3>
+                    <p class="text-sm text-gray-600 mb-4">Presentation slides used during the Science Fair Exhibition and Japan Exchange Program.</p>
+                    <button 
+                        onclick="openPdfModal('AESSUBPAGE/AESFile2.pdf')"
+                        class="w-full bg-red-900 hover:bg-red-950 text-white font-semibold py-3 px-6 rounded-lg transition-colors mb-4">
+                        View PDF
+                    </button>
+                    <div class="bg-gray-100 rounded-lg h-64 flex items-center justify-center">
+                        <iframe 
+                            src="AESSUBPAGE/AESFile2.pdf#navpanes=0&toolbar=0" 
+                            class="w-full h-full rounded-lg"
+                            title="Science Fair Presentation Slides">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PDF Modal -->
+    <div id="pdfModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-90 backdrop-blur-sm">
+        <div class="relative w-full h-full flex items-center justify-center p-4">
+            <button 
+                onclick="closePdfModal()"
+                class="absolute top-4 right-6 z-10 bg-black bg-opacity-50 hover:bg-opacity-80 text-white rounded-full w-12 h-12 flex items-center justify-center text-3xl transition-all"
+                aria-label="Close PDF viewer">
+                ×
+            </button>
+            <div class="bg-white rounded-xl w-full max-w-6xl h-5/6 overflow-hidden shadow-2xl">
+                <iframe id="pdfFrame" src="" class="w-full h-full border-0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Modal -->
+    <div id="photoModal" class="fixed inset-0 z-50 hidden bg-black bg-opacity-90 backdrop-blur-sm">
+        <div class="relative w-full h-full flex items-center justify-center p-4">
+            <button 
+                onclick="closePhotoModal()"
+                class="absolute top-4 right-6 z-10 bg-black bg-opacity-50 hover:bg-opacity-80 text-white rounded-full w-12 h-12 flex items-center justify-center text-3xl transition-all"
+                aria-label="Close photo viewer">
+                ×
+            </button>
+            <img id="photoModalImg" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
+        </div>
+    </div>
+
+    <script>
+        // PDF Modal Functions
+        function openPdfModal(pdfSrc) {
+            document.getElementById('pdfFrame').src = pdfSrc + '#navpanes=0';
+            document.getElementById('pdfModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePdfModal() {
+            document.getElementById('pdfModal').classList.add('hidden');
+            document.getElementById('pdfFrame').src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Photo Modal Functions
+        function openPhotoModal(photoSrc) {
+            document.getElementById('photoModalImg').src = photoSrc;
+            document.getElementById('photoModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePhotoModal() {
+            document.getElementById('photoModal').classList.add('hidden');
+            document.getElementById('photoModalImg').src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const pdfModal = document.getElementById('pdfModal');
+            const photoModal = document.getElementById('photoModal');
+            if (event.target === pdfModal) {
+                closePdfModal();
+            }
+            if (event.target === photoModal) {
+                closePhotoModal();
+            }
+        }
+
+        // Close modals with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closePdfModal();
+                closePhotoModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics and Math School - Eve Wang</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .header {
+            background-image: url('./public/images/MathandPhysicsindex.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 40px 0 30px;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(20, 20, 30, 0.75) 0%, rgba(40, 20, 60, 0.8) 100%);
+        }
+        
+        .header > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-button:hover {
+            color: #e0e0e0;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-align: center;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .content-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .content-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+        }
+
+        .content-summary {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .pdf-section {
+            width: 100%;
+            background: #ffffff;
+            padding: 3rem 0;
+        }
+
+        .pdf-container {
+            width: 40%;
+            max-width: 600px;
+            margin: 0 auto;
+            aspect-ratio: 210 / 297;
+        }
+
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1rem;
+            }
+
+            .content-title {
+                font-size: 1.2rem;
+            }
+
+            .content-summary {
+                font-size: 0.9rem;
+            }
+
+            .pdf-container {
+                width: 90%;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="back-button">← Back to Portfolio</a>
+            <h1 class="page-title">Coursework - Physics Lab Report</h1>
+            <div class="page-subtitle">Selected independent lab report from my physics coursework</div>
+        </div>
+    </header>
+
+    <section class="pdf-section">
+        <div class="container">
+            <div class="content-intro">
+                <h2 class="content-title">Measuring the Speed of Sound with a Straw Flute</h2>
+                <p class="content-summary">In this high school physics lab, I measured the speed of sound using a straw flute as an open tube resonator. By identifying harmonic frequencies and fitting wavelength–frequency relations, I calculated the speed of sound with error analysis.</p>
+            </div>
+        </div>
+        
+        <div class="pdf-container">
+            <iframe src="physicsmath/physicsmath.pdf#navpanes=0&toolbar=0" title="Physics and Math Research PDF"></iframe>
+        </div>
+    </section>
+</body>
+</html>
